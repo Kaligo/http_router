@@ -55,10 +55,10 @@ class HttpRouter
     def initialize(route, paths)
       @route, @paths = route, paths
       @router = @route.router
-      @route.generator = self
       @path_generators = @paths.map do |p|
         PathGenerator.new(route, p.is_a?(String) ? p : route.path_for_generation, p.is_a?(Regexp) ? p : nil)
       end
+      @route.generator = self
     end
 
     def param_names
